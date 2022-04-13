@@ -20,7 +20,7 @@
 
   <body>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 listThing">
         <table class="table">
           <thead>
             <tr>
@@ -35,9 +35,11 @@
         </table>
       </div>
     </div>
-    <button type="button" class="btn btn-dark">
-      <a href="/admin.html"> Admin side</a>
-    </button>
+    <div class="buttonpp">
+      <button type="button" id="pressMe" class="btn btn-dark">
+        <a href="/admin.html"> Admin side</a>
+      </button>
+    </div>
     <script>
       //get and display data from database in table as <td>
       const waitAsync = async () => {
