@@ -51,8 +51,9 @@
           }
         );
         const data = await response.json();
+        console.log(data);
+        const table = document.querySelector("table");
         data.forEach((product) => {
-          const table = document.querySelector("table");
           const row = document.createElement("tr");
           const id = document.createElement("td");
           const name = document.createElement("td");
@@ -60,12 +61,12 @@
           const brand = document.createElement("td");
           const image = document.createElement("td");
           const price = document.createElement("td");
-          id.textContent = product._id;
-          name.textContent = product.name;
-          description.textContent = product.description;
-          brand.textContent = product.brand;
-          image = product.imageUrl;
-          price.textContent = product.price;
+          id.innerHTML = product._id;
+          name.innerHTML = product.name;
+          description.innerHTML = product.description;
+          brand.innerHTML = product.brand;
+          image.innerHTML = product.imageUrl;
+          price.innerHTML = product.price;
           row.appendChild(id);
           row.appendChild(name);
           row.appendChild(description);
@@ -76,7 +77,32 @@
         });
       };
       waitAsync();
-      window.onload = waitAsync();
+      // const data = await response.json();
+      // data.forEach((product) => {
+      //   const table = document.querySelector("table");
+      //   const row = document.createElement("tr");
+      //   const id = document.createElement("td");
+      //   const name = document.createElement("td");
+      //   const description = document.createElement("td");
+      //   const brand = document.createElement("td");
+      //   const image = document.createElement("td");
+      //   const price = document.createElement("td");
+      //   id.textContent = product._id;
+      //   name.textContent = product.name;
+      //   description.textContent = product.description;
+      //   brand.textContent = product.brand;
+      //   image = product.imageUrl;
+      //   price.textContent = product.price;
+      //   row.appendChild(id);
+      //   row.appendChild(name);
+      //   row.appendChild(description);
+      //   row.appendChild(brand);
+      //   row.appendChild(image);
+      //   row.appendChild(price);
+      //   table.appendChild(row);
+      //     });
+      //   };
+      waitAsync();
     </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
