@@ -1,6 +1,14 @@
+body {
+    overflow-x: hidden;
+}
 .table {
     margin-top: 40px;
     display: flex;
     justify-content: center;
+    align-content: center;
     width: 80%;
+}
+#addChart {
+    margin-top: 30px;
+    width: 50%;
 }
