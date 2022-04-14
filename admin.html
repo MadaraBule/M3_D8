@@ -19,67 +19,82 @@
   </head>
 
   <body>
-    <div id="addChart" class="container-fluid">
-        <div class="input-group mb-3">
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand">
+        <img src="#" height="50px" alt="" />
+      </a>
+      <a class="text-light" href="/admin.html">Back Office</a>
+    </nav>
+    <div class="container">
+      <h1>Products</h1>
+      <hr />
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-control" id="name" placeholder="name" />
+        </div>
+        <div class="form-group">
+          <label for="name">Brand</label>
+          <input class="form-control" id="brand" placeholder="brad" />
+        </div>
+        <div class="form-group">
+          <label for="name">Price</label>
+          <input class="form-control" id="price" placeholder="0" />
+        </div>
+        <div class="form-group">
+          <label for="name">Image URL</label>
+          <input class="form-control" id="imageURL" placeholder="#" />
+        </div>
+        <div class="form-group">
+          <label for="name">Description</label>
           <input
-            type="text"
             class="form-control"
-            placeholder="Products ID"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
+            id="description"
+            placeholder="description"
           />
-      </div>
-    <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="name"
-          aria-label="Recipient's username"
-          aria-describedby="button-addon2"
-        />
-      </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="description"
-          aria-label="Recipient's username"
-          aria-describedby="button-addon2"
-        />
-      </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="brand"
-          aria-label="Recipient's username"
-          aria-describedby="button-addon2"
-        />
-      </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="price"
-          aria-label="Recipient's username"
-          aria-describedby="button-addon2"
-        />
-      </div>
-      <form action="/action_page.php">
-        <input type="file" id="myFile" name="filename">
-        <input type="submit">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-warning mr-2">save</button>
+        </div>
       </form>
     </div>
-  </div>
-  <div class="buttonpp">
-    <button type="button" id="pressMe" class="btn btn-dark">
-     submit item
-    </button>
-  <div class="buttonpp">
-  <button type="button" id="pressMe" class="btn btn-dark">
-    <a href="/index.html"> go back</a>
-  </button>
-</div>
+    <script>
+      const BASE_URL = fetch("https://striveschool-api.herokuapp.com/api", {
+        const: (headers = new Headers({
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YmU1Y2E5MDIzOTAwMTVkOTY1ZDIiLCJpYXQiOjE2NDk5NDE2ODEsImV4cCI6MTY1MTE1MTI4MX0.504Tm1tvYgEViRTx0qGQQubJEVKFGEfl9udB-Pqi4go",
+        })),
+      });
+      const getProducts = (callback) => {
+        fetch(BASE_URL, { headers })
+          .then((res) => res.json())
+          .catch((data) => callback(null, data))
+          .catch((error) => callback(error, null));
+      };
+      window.onload = function () {
+        getProducts((error, data) => {
+          if (error) {
+            console.log({ error });
+          } else {
+            const content = document.querySelector(".card-columns");
+            content.innerHTML = "";
+            data.forEach((product) => {
+              content.innerHTML += `<div class="card">
+                <img src="${product.imageUrl}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">${product.name}</h5>
+                  <p class="card-text">${product.description}</p>
+                  <p class="card-text">${product.brand}</p>
+                  <p class="card-text">${product.price}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>`;
+            });
+          }
+        });
+      };
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -90,5 +105,6 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
+    <script></script>
   </body>
 </html>

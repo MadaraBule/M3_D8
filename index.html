@@ -19,27 +19,33 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand">
+        <img src="#" height="50px" alt="" />
+      </a>
+      <a class="text-light" href="/admin.html">Back Office</a>
+    </nav>
     <div class="container">
       <h1>Products</h1>
       <hr />
       <div class="card-columns"></div>
     </div>
     <script>
-      const BASE_URL = fetch("https://striveschool-api.herokuapp.com/api", {
-        const: (headers = new Headers({
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YmU1Y2E5MDIzOTAwMTVkOTY1ZDIiLCJpYXQiOjE2NDk5NDE2ODEsImV4cCI6MTY1MTE1MTI4MX0.504Tm1tvYgEViRTx0qGQQubJEVKFGEfl9udB-Pqi4go",
-        })),
-      });
       const getProducts = (callback) => {
-        fetch(BASE_URL, { headers })
+        fetch("https://striveschool-api.herokuapp.com/api/product", {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YmU1Y2E5MDIzOTAwMTVkOTY1ZDIiLCJpYXQiOjE2NDk5NDE2ODEsImV4cCI6MTY1MTE1MTI4MX0.504Tm1tvYgEViRTx0qGQQubJEVKFGEfl9udB-Pqi4go",
+          },
+        })
           .then((res) => res.json())
-          .catch((data) => callback(null, data))
+          .then((data) => callback(null, data))
           .catch((error) => callback(error, null));
       };
+
       window.onload = function () {
         getProducts((error, data) => {
+          console.log(data);
           if (error) {
             console.log({ error });
           } else {
